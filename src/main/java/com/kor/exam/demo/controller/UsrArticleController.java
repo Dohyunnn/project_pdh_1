@@ -12,12 +12,14 @@ import com.kor.exam.demo.vo.Article;
 @Controller
 public class UsrArticleController {
 	//인스턴스 변수 시작
+	private ArticleService articleService;
 	private int articlesLastId;
 	private List<Article> articles;
     //인스턴스 변수 끝
 	
 	//생성자
 	public UsrArticleController() {
+		articleService = new ArticleService();
 		articlesLastId =0;
 		articles = new ArrayList<>();
 		
@@ -76,6 +78,17 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/getArticles")
 	@ResponseBody
 	public List<Article> getArticles() {
+		return articles;
+	}
+
+	@RequestMapping("/usr/article/getArticle")
+	@ResponseBody
+	public Object getArticleAction(int id) {
+		Article article = getArticle(id);
+		
+		if ( article == null) {
+			return id + "번 게시물은 존재하지 않습니다";
+		}
 		return articles;
 	}
 
