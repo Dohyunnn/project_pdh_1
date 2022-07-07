@@ -12,7 +12,6 @@ import com.kor.exam.demo.utill.Ut;
 import com.kor.exam.demo.vo.Article;
 import com.kor.exam.demo.vo.ResultData;
 
-@Controller
 public class UsrArticleController {
 	@Autowired
 	private ArticleService articleService;
@@ -39,8 +38,10 @@ public class UsrArticleController {
 	
 	@RequestMapping("/usr/article/getArticles")
 	@ResponseBody
-	public List<Article> getArticles() {
-		return articleService.getArticles();
+	public ResultData getArticles() {
+		List<Article> articles = articleService.getArticles();
+		
+		return ResultData.from("S-1", "게시물 리스트 입니다.", articles);
 	}
 	
 	@RequestMapping("/usr/article/getArticle")
