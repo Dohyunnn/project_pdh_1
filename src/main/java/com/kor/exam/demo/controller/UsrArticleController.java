@@ -15,11 +15,14 @@ public class UsrArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-	//액션메서드 시작
+	// 액션 메서드 시작
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
 	public Article doAdd(String title, String body) {
-		Article  article = articleService.writeArticle(title,body);
+		int id = articleService.writeArticle(title, body);
+		
+		Article article = articleService.getArticle(id);
+		
 		return article;
 	}
 	
@@ -31,12 +34,13 @@ public class UsrArticleController {
 	
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
-	public Object getArticleAction(int id) {
+	public Object getArticle(int id) {
 		Article article = articleService.getArticle(id);
 		
 		if ( article == null) {
-			return id + "번 게시물은 존재하지 않습니다";
+			return id + "번 게시물은 존재하지 않습니다.";
 		}
+		
 		return article;
 	}
 	
@@ -45,11 +49,13 @@ public class UsrArticleController {
 	public String doDelete(int id) {
 		Article article = articleService.getArticle(id);
 		
-		if(article == null) {
-			return id + "번 게시물이 존재하지 않습니다";
+		if ( article == null ) {
+			return id + "번 게시물이 존재하지 않습니다.";
 		}
+		
 		articleService.deleteArticle(id);
-		return id + "번 게시물을 삭제하였습니다";
+		
+		return id + "번 게시물을 삭제하였습니다.";
 	}
 	
 	@RequestMapping("/usr/article/doModify")
@@ -57,15 +63,13 @@ public class UsrArticleController {
 	public String doModify(int id, String title, String body) {
 		Article article = articleService.getArticle(id);
 		
-		if (article == null) {
-			return id + "번 게시물이 존재 하지 않습니다";
+		if ( article == null ) {
+			return id + "번 게시물이 존재하지 않습니다.";
 		}
 		
 		articleService.modifyArticle(id, title, body);
 		
-		return id + "번 게시물을 수정하였습니다";
+		return id + "번 게시물을 수정하였습니다.";
 	}
-	//액션 메서드 끝
-	
-
+	// 액션 메서드 끝
 }
