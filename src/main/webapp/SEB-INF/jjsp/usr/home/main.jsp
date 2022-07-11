@@ -9,33 +9,17 @@
 <title>메인</title>
 </head>
 <body>
-  <h1>안녕하세요.</h1>
+  <h1>메인 페이지</h1>
   
-  <hr />
+  <header>
+    <a href="/">로고</a>
+    
+    <ul>
+    	<li><a href="/">홈</a></li>
+    	<li><a href="/usr/article/list">리스트</a></li>
+    </ul>
+  </header>
   
-  <table border="1">
-    <thead>
-      <tr>
-        <th>번호</th>
-        <th>작성날짜</th>
-        <th>수정날짜</th>
-        <th>작성자</th>
-        <th>제목</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach var="article" items="${articles}">
-        <tr>
-          <td>${article.id}</td>
-          <td>${article.regDate}</td>
-          <td>${article.updateDate}</td>
-          <td>${article.memberId}</td>
-          <td>
-            <a href="../article/detail?id=${article.id}">${article.title}</a>
-          </td>
-        </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+  <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo beatae veniam placeat odio voluptatibus est error consequatur enim optio consectetur sunt accusantium molestiae cupiditate quis repellendus facere atque ducimus velit.</div>
 </body>
 </html>
