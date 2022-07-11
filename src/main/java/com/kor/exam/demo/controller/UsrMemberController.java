@@ -52,7 +52,7 @@ public class UsrMemberController {
 			return (ResultData)joinRd;
 		}
 		
-		Member member = memberService.getMemberById(joinRd.getData1());
+		Member member = (Member) memberService.getMemberById(joinRd.getData1());
 		
 		return ResultData.newData(joinRd, "member", member);
 	}
@@ -97,7 +97,7 @@ public class UsrMemberController {
 			return ResultData.from("F-2", "loginPw(을)를 입력해주세요.");
 		}
 		
-		Member member = memberService.getMemberByLoginId(loginId);
+		Member member = (Member) memberService.getMemberByLoginId(loginId);
 		
 		if ( member == null ) {
 			return ResultData.from("F-3", "존재하지 않은 로그인아이디 입니다.");
