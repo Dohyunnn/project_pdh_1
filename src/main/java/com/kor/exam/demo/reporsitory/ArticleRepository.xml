@@ -7,6 +7,7 @@
 		INSERT INTO article
 		SET regDate = NOW(),
 		updateDate = NOW(),
+		memberId = #{memberId},
 		title = #{title},
 		`body` = #{body}
 	</insert>
@@ -38,14 +39,14 @@
 	<update id="modifyArticle">
 		UPDATE article
 		<set>
-		<if test = "title != null and title != ''">
-		  title = #{title},
-		</if>
+			<if test="title != null and title != ''">
+				title = #{title},
+			</if>
+			<if test="body != null and body != ''">
+				`body` = #{body},
+			</if>
+			updateDate = NOW()
 		</set>
-		<if test = "body != null and body != ''">
-		`body` = #{body},
-		</if>
-		updateDate = NOW()
 		WHERE id = #{id}
 	</update>
-</mapper>
+</mapper> 
